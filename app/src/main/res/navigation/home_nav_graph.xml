@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_nav"
+    app:startDestination="@id/onboardingFragment">
+
+    <fragment
+        android:id="@+id/onboardingFragment"
+        android:name="cl.sosafe.nestednavdemo.home.OnboardingFragment"
+        android:label="OnboardingFragment">
+        <action
+            android:id="@+id/action_onboarding_to_home"
+            app:destination="@id/homeFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="cl.sosafe.nestednavdemo.home.HomeFragment"
+        android:label="HomeFragment">
+        <action
+            android:id="@+id/action_home_to_user_nav_graph"
+            app:destination="@id/user_nav_graph" />
+    </fragment>
+
+    <navigation
+        android:id="@+id/user_nav_graph"
+        app:startDestination="@id/userProfileFragment">
+        <fragment
+            android:id="@+id/userProfileFragment"
+            android:name="cl.sosafe.nestednavdemo.user.UserProfileFragment"
+            android:label="UserProfileFragment">
+            <action
+                android:id="@+id/action_userProfile_to_userSettings"
+                app:destination="@id/userSettingsFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/userSettingsFragment"
+            android:name="cl.sosafe.nestednavdemo.user.UserSettingsFragment"
+            android:label="UserSettingsFragment">
+            <deepLink
+                android:id="@+id/deepLink"
+                app:action="LAUNCH"
+                app:uri="sosafedemo://user_settings" />
+        </fragment>
+
+        <action
+            android:id="@+id/action_global_userSettingsFragment"
+            app:destination="@id/userSettingsFragment" />
+    </navigation>
+
+    <!--
+    <action
+        android:id="@+id/action_global_userSettingsRoot"
+        app:destination="@id/userSettingsFragment" />
+    -->
+</navigation>
